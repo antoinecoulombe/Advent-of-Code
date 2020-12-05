@@ -1,0 +1,11 @@
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\bin\Debug\netcoreapp2.1\dev.deps.json
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\bin\Debug\netcoreapp2.1\dev.runtimeconfig.json
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\bin\Debug\netcoreapp2.1\dev.runtimeconfig.dev.json
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\bin\Debug\netcoreapp2.1\dev.dll
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\bin\Debug\netcoreapp2.1\dev.pdb
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.csprojAssemblyReference.cache
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.csproj.CoreCompileInputs.cache
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.AssemblyInfoInputs.cache
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.AssemblyInfo.cs
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.dll
+C:\Users\Antoine\Dropbox\school\udes\INFO\2_A20\dev\dev\obj\Debug\netcoreapp2.1\dev.pdb
