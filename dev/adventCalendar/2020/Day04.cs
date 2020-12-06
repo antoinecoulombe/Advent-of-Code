@@ -19,51 +19,44 @@ namespace dev.adventCalendar._2020
 
         private bool ValidateField(string field, string value)
         {
-            bool valid = false; int n = 0;
+            int n = 0;
             switch (field)
             {
                 case "byr":
-                    valid = int.TryParse(value, out n)
+                    return int.TryParse(value, out n)
                         && n >= 1920 && n <= 2002;
-                    break;
                 case "iyr":
-                    valid = int.TryParse(value, out n)
+                    return int.TryParse(value, out n)
                         && n >= 2010 && n <= 2020;
-                    break;
                 case "eyr":
-                    valid = int.TryParse(value, out n)
+                    return int.TryParse(value, out n)
                         && n >= 2020 && n <= 2030;
-                    break;
                 case "hgt":
-                    string[] m = Regex.Split(value, "^([0-9]*)(cm|in)$")
+                    var m = Regex.Split(value, "^([0-9]*)(cm|in)$")
                         .Where(x => !string.IsNullOrEmpty(x)).ToArray();
                     if (m.Length == 2 && int.TryParse(m[0], out n))
-                        valid = m[1] == "in" ? n >= 59 && n <= 76 : n >= 150 && n <= 193;
-                    break;
+                        return m[1] == "in" ? n >= 59 && n <= 76 : n >= 150 && n <= 193;
+                    else
+                        return false;
                 case "hcl":
-                    valid = Regex.IsMatch(value, "^#{1}([a-f]|[0-9]){6}$");
-                    break;
+                    return Regex.IsMatch(value, "^#{1}([a-f]|[0-9]){6}$");
                 case "ecl":
-                    valid = Array.Exists(new string[]
+                    return Array.Exists(new string[]
                     { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" }, ec => ec == value);
-                    break;
                 case "pid":
-                    valid = Regex.IsMatch(value, "^[0-9]{9}$");
-                    break;
+                    return Regex.IsMatch(value, "^[0-9]{9}$");
                 case "cid":
-                    valid = true;
-                    break;
+                    return true;
+                default:
+                    return false;
             }
-            return valid;
         }
 
         private string Execute(bool validate)
         {
-            string[] lines = GetFileLines(4);
             var fields = GetFields();
-
             int valid = 0;
-            foreach (string l in lines)
+            foreach (string l in GetFileLines(4))
             {
                 if (l.Trim().Length == 0)
                 {
@@ -73,18 +66,14 @@ namespace dev.adventCalendar._2020
                 }
                 else
                 {
-                    string[] inputs = l.Split(':', ' ');
+                    var inputs = l.Split(':', ' ');
                     for (int i = 0; i < inputs.Length - 1; ++i)
                         if (fields.ContainsKey(inputs[i]))
-                            fields[inputs[i]] = !validate ? true :
-                                ValidateField(inputs[i], inputs[i + 1]);
+                            fields[inputs[i]] = !validate || ValidateField(inputs[i], inputs[i + 1]);
                 }
             }
 
-            if (!fields.ContainsValue(false))
-                ++valid;
-
-            return valid.ToString();
+            return (valid + (!fields.ContainsValue(false) ? 1 : 0)).ToString();
         }
 
         public override string ExecuteFirst()

@@ -1,16 +1,16 @@
-﻿namespace dev.adventCalendar._2017
+﻿namespace dev.adventCalendar._2020
 {
-    class Day01 : Day
+    class Day07 : Day
     {
         public override string ExecuteFirst()
         {
-            string[] l = GetFileLines(1, 2017);
+            var lines = GetFileLines(7);
             return "";
         }
 
         public override string ExecuteSecond()
         {
-            string[] l = GetFileLines(1, 2017);
+            var lines = GetFileLines(7);
             return "";
         }
     }

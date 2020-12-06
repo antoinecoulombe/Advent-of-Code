@@ -20,9 +20,8 @@ namespace dev.adventCalendar._2020
         
         public override string ExecuteFirst()
         {
-            string[] lines = GetFileLines(5);
             int highestId = 0;
-            foreach (string l in lines)
+            foreach (string l in GetFileLines(5))
             {
                 int row = GetPosition(l, 0, 6, 0, 127, 'F', 'B'),
                     column = GetPosition(l, 6, 9, 0, 7, 'L', 'R');
@@ -37,9 +36,9 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond()
         {
-            string[] lines = GetFileLines(5);
-            List<(int, int)> seats = new List<(int, int)>();
-            foreach (string l in lines)
+            var seats = new List<(int, int)>();
+
+            foreach (string l in GetFileLines(5))
             {
                 int row = GetPosition(l, 0, 6, 0, 127, 'F', 'B'),
                     column = GetPosition(l, 6, 9, 0, 7, 'L', 'R');

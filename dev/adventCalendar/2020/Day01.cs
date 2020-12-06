@@ -5,10 +5,7 @@ namespace dev.adventCalendar._2020
     class Day01 : Day
     {
         private int[] GetNumbers()
-        {
-            string[] stringN = GetFileLines(1);
-            return Array.ConvertAll(stringN, sn => int.Parse(sn));
-        }
+            => Array.ConvertAll(GetFileLines(1), sn => int.Parse(sn));
 
         public override string ExecuteFirst()
         {
