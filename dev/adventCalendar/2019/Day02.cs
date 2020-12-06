@@ -5,10 +5,7 @@ namespace dev.adventCalendar._2019
     class Day02 : Day
     {
         private int[] GetNumbers()
-        {
-            string[] stringN = GetFileText(2, 2019).Split(',');
-            return Array.ConvertAll(stringN, sn => int.Parse(sn));
-        }
+            => Array.ConvertAll(GetFileText(2, 2019).Split(','), sn => int.Parse(sn));
 
         private string Execute(int i1 = -1, int i2 = -1)
         {
