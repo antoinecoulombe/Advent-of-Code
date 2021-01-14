@@ -8,7 +8,7 @@ namespace dev
     {
         static void Main(string[] args)
         {
-            AdventCalendar.ExecuteDay(6);
+            AdventCalendar.ExecuteDay(10);
             Console.ReadKey();
         }
     }

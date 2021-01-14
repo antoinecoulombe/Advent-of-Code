@@ -34,5 +34,17 @@ namespace dev.adventCalendar
             try { return File.ReadAllText(GetRessourcePath(d, y, fileName)); }
             catch (Exception) { return null; }
         }
+
+        public int[] GetIntegers(int d, int y = 2020, string fileName = "input.txt")
+        {
+            try { return Array.ConvertAll(GetFileLines(d, y, fileName), sn => int.Parse(sn)); }
+            catch (Exception) { return null; }
+        }
+
+        public double[] GetDoubles(int d, int y = 2020, string fileName = "input.txt")
+        {
+            try { return Array.ConvertAll(GetFileLines(d, y, fileName), sn => double.Parse(sn)); }
+            catch (Exception) { return null; }
+        }
     }
 }
