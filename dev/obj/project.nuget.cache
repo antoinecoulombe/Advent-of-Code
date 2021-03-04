@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "teUoOeiQ8Bf8r8420QiTeGYQXC9x5uyR3IwD49DehW8CO85NB7st0E63Zw5x8nTBSyafGmjERu0m0sMDyunsUQ==",
+  "dgSpecHash": "TRaPZy4SmOpMOET1vc9wHNMeGu5yK2c+SxeCrK/vw671EOpQrFhtwR4RafO8l4tb/FpbeNlcyWhRCHcdgEVkMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\zskyl\\Dropbox\\vs_dev\\dev\\dev.csproj",
+  "projectFilePath": "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.app\\2.1.0\\microsoft.netcore.app.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.1.0\\microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.1.0\\microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.1.0\\microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.0\\microsoft.netcore.platforms.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\microsoft.netcore.targets\\2.1.0\\microsoft.netcore.targets.2.1.0.nupkg.sha512",
-    "C:\\Users\\zskyl\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "/Users/antoine/.nuget/packages/microsoft.netcore.app/2.1.0/microsoft.netcore.app.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/microsoft.netcore.dotnetapphost/2.1.0/microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/microsoft.netcore.dotnethostpolicy/2.1.0/microsoft.netcore.dotnethostpolicy.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/microsoft.netcore.dotnethostresolver/2.1.0/microsoft.netcore.dotnethostresolver.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/microsoft.netcore.platforms/2.1.0/microsoft.netcore.platforms.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/microsoft.netcore.targets/2.1.0/microsoft.netcore.targets.2.1.0.nupkg.sha512",
+    "/Users/antoine/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }
