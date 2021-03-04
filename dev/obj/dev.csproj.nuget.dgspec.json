@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj": {}
+    "/Users/antoine/Documents/github/projects/dev/dev.csproj": {}
   },
   "projects": {
-    "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj": {
+    "/Users/antoine/Documents/github/projects/dev/dev.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj",
+        "projectUniqueName": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
         "projectName": "dev",
-        "projectPath": "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj",
+        "projectPath": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
         "packagesPath": "/Users/antoine/.nuget/packages/",
-        "outputPath": "/Users/antoine/Dropbox/vs_dev/dev/obj/",
+        "outputPath": "/Users/antoine/Documents/github/projects/dev/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

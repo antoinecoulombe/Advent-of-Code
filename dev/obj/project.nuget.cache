@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TRaPZy4SmOpMOET1vc9wHNMeGu5yK2c+SxeCrK/vw671EOpQrFhtwR4RafO8l4tb/FpbeNlcyWhRCHcdgEVkMA==",
+  "dgSpecHash": "fDxftxiArddsUz5kxX20+NHNCOvi3X/jYd2t5MeGVxVSG/856u7OcCC377e4ccCtMUS7oOy3WEkXBErt7357WQ==",
   "success": true,
-  "projectFilePath": "/Users/antoine/Dropbox/vs_dev/dev/dev.csproj",
+  "projectFilePath": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
   "expectedPackageFiles": [
     "/Users/antoine/.nuget/packages/microsoft.netcore.app/2.1.0/microsoft.netcore.app.2.1.0.nupkg.sha512",
     "/Users/antoine/.nuget/packages/microsoft.netcore.dotnetapphost/2.1.0/microsoft.netcore.dotnetapphost.2.1.0.nupkg.sha512",

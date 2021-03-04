@@ -5,19 +5,30 @@ namespace dev.adventCalendar
 {
     abstract class Day
     {
-        private static string baseFolder = "dev\\";
+        private static string sep = "\\";
+        private static string baseFolder = "dev" + sep;
 
         public abstract string ExecuteFirst();
         public abstract string ExecuteSecond();
+
 
         public string GetRessourcePath(int d, int y = 2020, string fileName = null)
         {
             try
             {
-                string path = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                path = path.Substring(0, path.LastIndexOf(baseFolder) + baseFolder.Length);
-                path += "adventCalendar\\" + y.ToString() + "\\ressources\\day_" + 
-                    (d < 10 ? "0" : "") + d.ToString() + "\\" + fileName ?? "";
+                string path = "";
+
+                if (Program.IsLinux())
+                {
+                    sep = "/";
+                    path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + sep;
+                }
+                else
+                    path = System.Reflection.Assembly.GetExecutingAssembly().Location
+                        .Substring(0, path.LastIndexOf(baseFolder) + baseFolder.Length);
+
+                path += "adventCalendar" + sep + y.ToString() + sep + "ressources" + sep + "day_" +
+                    (d < 10 ? "0" : "") + d.ToString() + sep + fileName ?? "";
                 return path;
             }
             catch (Exception) { return null; }

@@ -44,3 +44,15 @@ C:/Users/Antoine/Dropbox/vs_dev/dev/obj/Debug/netcoreapp2.1/dev.csprojAssemblyRe
 /Users/antoine/Dropbox/vs_dev/dev/obj/Debug/netcoreapp2.1/dev.dll
 /Users/antoine/Dropbox/vs_dev/dev/obj/Debug/netcoreapp2.1/dev.pdb
 /Users/antoine/Dropbox/vs_dev/dev/obj/Debug/netcoreapp2.1/dev.genruntimeconfig.cache
+/Users/antoine/Documents/github/projects/dev/bin/Debug/netcoreapp2.1/dev.deps.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/netcoreapp2.1/dev.runtimeconfig.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/netcoreapp2.1/dev.runtimeconfig.dev.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/netcoreapp2.1/dev.dll
+/Users/antoine/Documents/github/projects/dev/bin/Debug/netcoreapp2.1/dev.pdb
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.csprojAssemblyReference.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.AssemblyInfoInputs.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.AssemblyInfo.cs
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.csproj.CoreCompileInputs.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.dll
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.pdb
+/Users/antoine/Documents/github/projects/dev/obj/Debug/netcoreapp2.1/dev.genruntimeconfig.cache
