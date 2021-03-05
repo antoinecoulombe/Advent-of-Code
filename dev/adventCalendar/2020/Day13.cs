@@ -8,6 +8,7 @@ namespace dev.adventCalendar._2020
     {
         public override string ExecuteFirst()
         {
+            var lines = new List<string>(GetFileLines(13));
             return "";
         }
 

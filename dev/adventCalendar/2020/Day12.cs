@@ -121,6 +121,14 @@ namespace dev.adventCalendar._2020
                 throw new Exception("Can't convert integer direction to cardinal direction.");
             }
 
+            private DIR GetInverseDirection(DIR d)
+            {
+                int move = (int)d + 2;
+                if (move > 4)
+                    move %= 4;
+                return (DIR)move;
+            }
+
             private void RedirectWaypoint(ref (DIR direction, int distance)way, int move)
             {
                 move += (int)way.direction;
@@ -138,36 +146,13 @@ namespace dev.adventCalendar._2020
                 RedirectWaypoint(ref way, move);
             }
 
-            private void MoveWaypointNorth(ref (DIR direction, int distance)way, int num)
+            private void MoveWaypoint(ref (DIR direction, int distance)way, DIR dir, int num)
             {
-                if (way.direction == DIR.NORTH)
+                if (way.direction == dir)
                     way.distance += num;
-                else if (way.direction == DIR.SOUTH)
+                else if (way.direction == GetInverseDirection(dir))
                     way.distance -= num;
-            }
-
-            private void MoveWaypointSouth(ref (DIR direction, int distance) way, int num)
-            {
-                if (way.direction == DIR.SOUTH)
-                    way.distance += num;
-                else if (way.direction == DIR.NORTH)
-                    way.distance -= num;
-            }
-
-            private void MoveWaypointEast(ref (DIR direction, int distance) way, int num)
-            {
-                if (way.direction == DIR.EAST)
-                    way.distance += num;
-                else if (way.direction == DIR.WEST)
-                    way.distance -= num;
-            }
-
-            private void MoveWaypointWest(ref (DIR direction, int distance) way, int num)
-            {
-                if (way.direction == DIR.WEST)
-                    way.distance += num;
-                else if (way.direction == DIR.EAST)
-                    way.distance -= num;
+                FixWaypoint(ref way);
             }
 
             private void FixWaypoint(ref (DIR direction, int distance) way)
@@ -184,20 +169,20 @@ namespace dev.adventCalendar._2020
                 switch (dir)
                 {
                     case 'N':
-                        MoveWaypointNorth(ref waypoint.dir1, num);
-                        MoveWaypointNorth(ref waypoint.dir2, num);
+                        MoveWaypoint(ref waypoint.dir1, DIR.NORTH, num);
+                        MoveWaypoint(ref waypoint.dir2, DIR.NORTH, num);
                         break;
                     case 'S':
-                        MoveWaypointSouth(ref waypoint.dir1, num);
-                        MoveWaypointSouth(ref waypoint.dir2, num);
+                        MoveWaypoint(ref waypoint.dir1, DIR.SOUTH, num);
+                        MoveWaypoint(ref waypoint.dir2, DIR.SOUTH, num);
                         break;
                     case 'E':
-                        MoveWaypointEast(ref waypoint.dir1, num);
-                        MoveWaypointEast(ref waypoint.dir2, num);
+                        MoveWaypoint(ref waypoint.dir1, DIR.EAST, num);
+                        MoveWaypoint(ref waypoint.dir2, DIR.EAST, num);
                         break;
                     case 'W':
-                        MoveWaypointWest(ref waypoint.dir1, num);
-                        MoveWaypointWest(ref waypoint.dir2, num);
+                        MoveWaypoint(ref waypoint.dir1, DIR.WEST, num);
+                        MoveWaypoint(ref waypoint.dir2, DIR.WEST, num);
                         break;
                     case 'L':
                     case 'R':
@@ -209,9 +194,6 @@ namespace dev.adventCalendar._2020
                         base.Move(ConvertDirection(waypoint.dir2.direction), num * waypoint.dir2.distance);
                         break;
                 }
-
-                FixWaypoint(ref waypoint.dir1);
-                FixWaypoint(ref waypoint.dir2);
             }
         }
         
