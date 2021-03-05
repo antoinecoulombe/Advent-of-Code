@@ -14,7 +14,7 @@ namespace dev
 
         static void Main(string[] args)
         {
-            AdventCalendar.ExecuteDay(1);
+            AdventCalendar.ExecuteDay(12);
             Console.ReadKey();
         }
     }

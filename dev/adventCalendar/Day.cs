@@ -27,9 +27,8 @@ namespace dev.adventCalendar
                     path = System.Reflection.Assembly.GetExecutingAssembly().Location
                         .Substring(0, path.LastIndexOf(baseFolder) + baseFolder.Length);
 
-                path += "adventCalendar" + sep + y.ToString() + sep + "ressources" + sep + "day_" +
+                return path + "adventCalendar" + sep + y.ToString() + sep + "ressources" + sep + "day_" +
                     (d < 10 ? "0" : "") + d.ToString() + sep + fileName ?? "";
-                return path;
             }
             catch (Exception) { return null; }
         }
