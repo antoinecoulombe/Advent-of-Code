@@ -7,33 +7,13 @@ namespace dev.adventCalendar._2020
 {
     class Day13 : Day
     {
+        #region First Part
+
         private List<int> GetBusIds(string s)
         {
             var buses = s.Split(',').ToList();
             buses.RemoveAll(x => x == "x");
             return buses.Select(int.Parse).ToList();
-        }
-
-        private List<(ulong,ulong)> GetBusOffsets(string input)
-        {
-            var buses = new List<(ulong, ulong)>();
-            var split = input.Split(',').ToList();
-            ulong offset = 1, n = 0;
-            for (int i = 0; i < split.Count; ++i)
-                if (ulong.TryParse(split[i], out n))
-                    buses.Add((n, (ulong)i + 1));
-            //foreach (string s in split)
-            //{
-            //    if (ulong.TryParse(s, out n))
-            //    {
-            //        buses.Add((n, offset));
-            //        offset = 1;
-            //    }
-            //    else
-            //        ++offset;
-            //}
-            buses[0] = (buses[0].Item1, 0);
-            return buses;
         }
 
         private (int, int) GetFastestBus(int arrivalTime, List<int> busIds)
@@ -53,36 +33,57 @@ namespace dev.adventCalendar._2020
             return (fastestTime, fastestId);
         }
 
-        private string GetResult1((int time,int id)fastest)
+        #endregion
+
+        #region Second Part
+
+        private List<(int id, int pos)> GetBusesInfo(List<string> input)
         {
-            return (fastest.time * fastest.id).ToString();
+            var buses = new List<(int, int)>();
+            for (int i = 0; i < input.Count; ++i)
+                if (int.TryParse(input[i], out int n))
+                    buses.Add((n, i));
+            return buses;
         }
+
+        private long GetInverse(long Ni, int id)
+        {
+            long x = Ni % id;
+            for (int i = 1; i < id; ++i)
+                if ((x * i) % id == 1)
+                    return i;
+            return 1;
+        }
+
+        private long GetModulo(int offset, int id)
+            => ((offset % id) + id) % id;
+
+        private long GetCRTValue(List<(int id, int pos)> buses)
+        {
+            long N = 1, sum = 0;
+            buses.ForEach(x => N *= x.id);
+            foreach (var (id, pos) in buses)
+            {
+                long mod = GetModulo(id - pos, id),
+                    inverse = GetInverse(N / id, id);
+                sum += mod * (N / id) * inverse;
+            }
+            return sum % N;
+        }
+
+        #endregion
 
         public override string ExecuteFirst()
         {
             var l = GetFileLines(13);
-            return GetResult1(GetFastestBus(int.Parse(l[0]), GetBusIds(l[1])));
-        }
-
-        private bool AreOrdered(List<(ulong id, ulong offset)> buses, ulong currentTime)
-        {
-            foreach ((ulong id, ulong offset) bus in buses)
-                if ((currentTime + bus.offset) % bus.id != 0)
-                    return false;
-            return true;
-        }
-
-        private ulong GetEarliestOrderedBuses(List<(ulong id, ulong offset)> buses)
-        {
-            ulong currentTime = buses[0].id * 100000000000000;
-            while (!AreOrdered(buses, currentTime))
-                currentTime += buses[0].id;
-            return currentTime;
+            (int time, int id) fastest = GetFastestBus(int.Parse(l[0]), GetBusIds(l[1]));
+            return (fastest.time * fastest.id).ToString();
         }
 
         public override string ExecuteSecond()
         {
-            return GetEarliestOrderedBuses(GetBusOffsets(GetFileLines(13)[1])).ToString();
+            var buses = GetBusesInfo(GetFileLines(13)[1].Split(',').ToList());
+            return GetCRTValue(buses).ToString();
         }
     }
 }
