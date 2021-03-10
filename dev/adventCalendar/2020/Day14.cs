@@ -7,15 +7,15 @@ namespace dev.adventCalendar._2020
 {
     class Day14 : Day
     {
-        private List<(string, int, string)> GetMemory()
+        private List<(string, long, string)> GetMemory()
         {
             var lines = GetFileLines(14);
-            var mem = new List<(string, int, string)>();
+            var mem = new List<(string, long, string)>();
             foreach (string l in lines)
             {
                 var value = l.Substring(l.IndexOf('=') + 2);
                 if (l.StartsWith("mask"))
-                    mem.Add(("mask", 0, value));
+                    mem.Add(("mask", -1, value));
                 else
                 {
                     var add = int.Parse(l.Substring(4, l.IndexOf(']') - 4));
@@ -25,17 +25,27 @@ namespace dev.adventCalendar._2020
             return mem;
         }
 
-        private string ToBinary(int x, int size)
+        private string ToBinary(long x, int size)
         {
-            char[] buff = new char[size];
-
-            for (int i = size - 1; i >= 0; i--)
-                buff[(size - 1) - i] = (x & (1 << i)) != 0 ? '1' : '0';
-
-            return new string(buff);
+            string b = Convert.ToString(x, 2);
+            return new string('0', size - b.Length) + b;
         }
 
-        private string ApplyMask(StringBuilder num, string mask)
+        #region First Part
+
+        private List<(string, long, string)> RemoveDuplicates(List<(string, long, string)> mem)
+        {
+            var newMem = new List<(string, long, string)>();
+
+            for (int i = mem.Count - 1; i >= 0; --i)
+                if (mem[i].Item1 == "mask" || newMem.Find(x => x.Item1 != "mask" && x.Item2 == mem[i].Item2) == default)
+                    newMem.Add(mem[i]);
+
+            newMem.Reverse();
+            return newMem;
+        }
+
+        private string ApplyValueMask(StringBuilder num, string mask)
         {
             if (num.Length != mask.Length)
                 throw new Exception("The binary number and mask are not the same length.");
@@ -47,7 +57,7 @@ namespace dev.adventCalendar._2020
             return num.ToString();
         }
 
-        private void Decode(ref List<(string type, int add, string val)> mem)
+        private void DecodeValues(ref List<(string type, long add, string val)> mem)
         {
             string mask = "";
             for (int i = 0; i < mem.Count; ++i)
@@ -58,23 +68,108 @@ namespace dev.adventCalendar._2020
                     continue;
                 }
 
-                var b = ToBinary(int.Parse(mem[i].val), 36);
-                b = ApplyMask(new StringBuilder(b), mask);
-                b = Convert.ToInt64(b, 2).ToString();
-                mem[i] = (mem[i].type, mem[i].add, b);
+                var binary = ToBinary(long.Parse(mem[i].val), 36);
+                var masked = ApplyValueMask(new StringBuilder(binary), mask);
+                var converted = Convert.ToInt64(masked, 2).ToString();
+                mem[i] = (mem[i].type, mem[i].add, converted);
             }
         }
+
+        private long AddValues(List<(string, long, string)> mem)
+            => mem.Sum(x => x.Item1 == "mem" ? long.Parse(x.Item3) : 0);
+
+        #endregion
+
+        #region Second Part
+
+        private string ApplyAddressMask(StringBuilder addr, string mask)
+        {
+            if (addr.Length != mask.Length)
+                throw new Exception("The binary number and mask are not the same length.");
+
+            for (int i = 0; i < addr.Length; ++i)
+            {
+                if (mask[i] == '1')
+                    addr[i] = '1';
+                else if (mask[i] == 'X')
+                    addr[i] = 'X';
+            }
+
+            return addr.ToString();
+        }
+
+        private List<string> GetAddressesFromMask(string addr)
+        {
+            var addresses = new List<string>();
+            addresses.Add(addr);
+
+            for (int pos = addr.Length - 1; pos >= 0; --pos)
+            {
+                if (addr[pos] != 'X')
+                    continue;
+
+                int count = addresses.Count;
+                for (int i = 0; i < count; ++i)
+                {
+                    addresses.Add(addresses[0].Substring(0, pos) + '0' + addresses[0].Substring(pos + 1));
+                    addresses.Add(addresses[0].Substring(0, pos) + '1' + addresses[0].Substring(pos + 1));
+                    addresses.RemoveAt(0);
+                }
+            }
+
+            return addresses;
+        }
+
+        private long DecodeAddresses(List<(string type, long add, string val)> mem)
+        {
+            var newAddresses = new List<(string, long)>();
+            string mask = "";
+            long total = 0;
+            for (int i = 0; i < mem.Count; ++i)
+            {
+                if (mem[i].type == "mask")
+                {
+                    mask = mem[i].val;
+                    continue;
+                }
+
+                var binary = ToBinary(mem[i].add, 36);
+                var masked = ApplyAddressMask(new StringBuilder(binary), mask);
+                var addresses = GetAddressesFromMask(masked);
+                var value = long.Parse(mem[i].val);
+
+                foreach (string addr in addresses) 
+                {
+                    var exist = newAddresses.Find(x => x.Item1 == addr);
+
+                    if (exist != default)
+                    {
+                        total -= exist.Item2;
+                        newAddresses.Remove(exist);
+                    }
+
+                    newAddresses.Add((addr, value));
+                    total += value;
+                }
+            }
+            return total;
+        }
+
+        #endregion
 
         public override string ExecuteFirst()
         {
             var mem = GetMemory();
-            Decode(ref mem);
-            return mem.Sum(m => m.Item1 == "mem" ? long.Parse(m.Item3) : 0).ToString();
+            mem = RemoveDuplicates(mem);
+            DecodeValues(ref mem);
+            return AddValues(mem).ToString();
         }
 
         public override string ExecuteSecond()
         {
-            return "";
+            var memBase = GetMemory();
+            var total = DecodeAddresses(memBase);
+            return total.ToString();
         }
     }
 }

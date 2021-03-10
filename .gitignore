@@ -2,3 +2,5 @@
 dev/bin/Debug/netcoreapp2.1/
 
 dev/obj/Debug/netcoreapp2.1/
+
+.DS_Store
