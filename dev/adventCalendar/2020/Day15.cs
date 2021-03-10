@@ -9,35 +9,43 @@ namespace dev.adventCalendar._2020
     {
         private class Turns
         {
-            private int[] turns;
+            private (int prev, int last)[] turns;
             private int lastTurn = 0;
+            private int lastValue = 0;
             private int toPlay;
+
+            private void InitTurns()
+            {
+                turns = new (int,int)[toPlay];
+                for (int i = 0; i < toPlay; ++i)
+                    turns[i] = (-1,-1);
+            }
 
             public Turns(string[] firstTurns, int toPlay)
             {
                 this.toPlay = toPlay;
-                turns = new int[toPlay];
+                InitTurns();
                 for (; lastTurn < firstTurns.Length; ++lastTurn)
-                    turns[lastTurn] = int.Parse(firstTurns[lastTurn]);
+                {
+                    lastValue = int.Parse(firstTurns[lastTurn]);
+                    turns[lastValue].last = lastTurn + 1;
+                }
             }
 
-            private int GetTurnDifference()
+            private void Play()
             {
-                for (int i = lastTurn - 1; i >= 0; --i)
-                    if (turns[i] == turns[lastTurn])
-                        return lastTurn - i;
-                return 0;
+                var last = turns[lastValue];
+                lastValue = last.prev == -1 ? 0 : last.last - last.prev;
+                ++lastTurn;
+                turns[lastValue].prev = turns[lastValue].last;
+                turns[lastValue].last = lastTurn;
             }
 
             public int GetLastTurn()
             {
-                int x = 0;
-                while (lastTurn + 1 < toPlay)
-                {
-                    turns[lastTurn + 1] = GetTurnDifference();
-                    ++lastTurn;
-                }
-                return turns[toPlay - 1];
+                while (lastTurn < toPlay)
+                    Play();
+                return lastValue;
             }
         }
 
