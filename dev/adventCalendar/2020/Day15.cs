@@ -9,78 +9,49 @@ namespace dev.adventCalendar._2020
     {
         private class Turns
         {
-            private class Turn
-            {
-                public int turnNumber;
-                public int NumberSpoken;
+            private int[] turns;
+            private int lastTurn = 0;
+            private int toPlay;
 
-                public Turn(int tn, int ns)
+            public Turns(string[] firstTurns, int toPlay)
+            {
+                this.toPlay = toPlay;
+                turns = new int[toPlay];
+                for (; lastTurn < firstTurns.Length; ++lastTurn)
+                    turns[lastTurn] = int.Parse(firstTurns[lastTurn]);
+            }
+
+            private int GetTurnDifference()
+            {
+                for (int i = lastTurn - 1; i >= 0; --i)
+                    if (turns[i] == turns[lastTurn])
+                        return lastTurn - i;
+                return 0;
+            }
+
+            public int GetLastTurn()
+            {
+                int x = 0;
+                while (lastTurn + 1 < toPlay)
                 {
-                    turnNumber = tn;
-                    NumberSpoken = ns;
+                    turns[lastTurn + 1] = GetTurnDifference();
+                    ++lastTurn;
                 }
-            }
-
-            private int currentTurn;
-            private List<Turn> turns;
-
-            public Turns(string[] firstTurns)
-            {
-                turns = new List<Turn>();
-                for (int i = 0; i < firstTurns.Length; ++i)
-                    turns.Add(new Turn(i + 1, int.Parse(firstTurns[i])));
-                currentTurn = firstTurns.Length + 1;
-            }
-
-            private List<Turn> FindLastTwoTurns()
-            {
-                var lastTurns = new List<Turn>();
-                var lastNumSpoken = turns[turns.Count - 1].NumberSpoken;
-                for (int i = turns.Count - 1; i >= 0; --i)
-                {
-                    if (turns[i].NumberSpoken == lastNumSpoken)
-                        lastTurns.Add(turns[i]);
-
-                    if (lastTurns.Count == 2)
-                        break;
-                }
-                return lastTurns;
-            }
-
-            private void AddTurn(int spoken)
-            {
-                turns.Add(new Turn(currentTurn, spoken));
-                ++currentTurn;
-            }
-
-            private void PlayTurn()
-            {
-                var lastTurns = FindLastTwoTurns();
-                if (lastTurns.Count() < 2)
-                    AddTurn(0);
-                else
-                    AddTurn(lastTurns[0].turnNumber - lastTurns[1].turnNumber);
-            }
-
-            public int GetTurn(int turn)
-            {
-                while (currentTurn != turn + 1)
-                    PlayTurn();
-                return turns.Find(x => x.turnNumber == turn).NumberSpoken;
+                return turns[toPlay - 1];
             }
         }
 
-        private Turns InitTurns()
-            => new Turns(GetFileLines(15)[0].Split(','));
+        private Turns InitTurns(int turns)
+            => new Turns(GetFileLines(15)[0].Split(','), turns);
 
         public override string ExecuteFirst()
         {
-            return InitTurns().GetTurn(2020).ToString();
+            return InitTurns(2020).GetLastTurn().ToString();
         }
 
         public override string ExecuteSecond()
         {
-            return InitTurns().GetTurn(30000000).ToString();
+            return InitTurns(30000000).GetLastTurn().ToString();
         }
     }
 }
