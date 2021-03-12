@@ -9,9 +9,9 @@ namespace dev.adventCalendar._2020
     {
         private class Tickets
         {
-            private List<Constraint> constraints;
-            private List<int> myTicketNumbers;
-            private List<List<int>> nearbyTicketNumbers;
+            public List<Constraint> constraints;
+            public List<int> myTicketNumbers;
+            public List<List<int>> nearbyTicketNumbers;
             private bool[] valid;
 
             public Tickets(List<string> lines)
@@ -58,9 +58,40 @@ namespace dev.adventCalendar._2020
             private void FilterNearbyTickets()
                 => nearbyTicketNumbers.RemoveAll(x => x.Exists(y => !valid[y]));
 
-            private void FindConstraintsValue()
+            private void FindValidIndexes()
             {
+                var found = new List<int>();
+                foreach (Constraint c in constraints)
+                {
+                    var validIndexes = Enumerable.Range(0, nearbyTicketNumbers[0].Count).ToList();
+                    validIndexes.RemoveAll(x => found.Contains(x));
 
+                    foreach (var nearby in nearbyTicketNumbers)
+                        for (int i = 0; i < nearby.Count; ++i)
+                            if (!c.InRanges(nearby[i]))
+                                validIndexes.Remove(i);
+
+                    c.validIndexes = validIndexes;
+                }
+            }
+
+            public void FindConstraintsValue()
+            {
+                FilterNearbyTickets();
+                FindValidIndexes();
+
+                while (constraints.Exists(x => x.value == -1))
+                {
+                    constraints = constraints.OrderBy(x => x.validIndexes.Count).ToList();
+
+                    var first = constraints.Find(x => x.validIndexes.Count > 0);
+                    var index = first.validIndexes.First();
+                    first.value = myTicketNumbers[index];
+
+                    foreach (Constraint c in constraints)
+                        if (c.validIndexes.Contains(index))
+                            c.validIndexes.Remove(index);
+                }
             }
 
             public int SumErrorRate()
@@ -73,11 +104,12 @@ namespace dev.adventCalendar._2020
                 return total;
             }
 
-            public int MultiplyConstraintsValue(int count)
+            public long MultiplyConstraintsValue()
             {
-                int total = 1;
-                for (int i = 0; i < count; ++i)
-                    total *= constraints[i].value;
+                long total = 1;
+                foreach (Constraint c in constraints)
+                    if (c.name.StartsWith("departure"))
+                        total *= c.value;
                 return total;
             }
         }
@@ -86,6 +118,7 @@ namespace dev.adventCalendar._2020
         {
             public readonly string name;
             public readonly List<(int lowerbound, int upperbound)> ranges;
+            public List<int> validIndexes;
             public int value;
 
             public Constraint(string line)
@@ -98,6 +131,9 @@ namespace dev.adventCalendar._2020
                 split = split[1].Split(" or ");
                 ranges.Add(SplitNumbers(split[0]));
                 ranges.Add(SplitNumbers(split[1]));
+
+                validIndexes = new List<int>();
+                value = -1;
             }
 
             private (int, int) SplitNumbers(string s)
@@ -124,7 +160,8 @@ namespace dev.adventCalendar._2020
         public override string ExecuteSecond()
         {
             var tickets = new Tickets(GetFileLines(16).ToList());
-            return tickets.MultiplyConstraintsValue(6).ToString();
+            tickets.FindConstraintsValue(); 
+            return tickets.MultiplyConstraintsValue().ToString();
         }
     }
 }
