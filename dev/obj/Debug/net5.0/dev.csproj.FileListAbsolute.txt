@@ -1,0 +1,15 @@
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/dev.deps.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/dev.runtimeconfig.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/dev.runtimeconfig.dev.json
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/dev.dll
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/ref/dev.dll
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/dev.pdb
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.csprojAssemblyReference.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.GeneratedMSBuildEditorConfig.editorconfig
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.AssemblyInfoInputs.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.AssemblyInfo.cs
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.csproj.CoreCompileInputs.cache
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.dll
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/ref/dev.dll
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.pdb
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.genruntimeconfig.cache
