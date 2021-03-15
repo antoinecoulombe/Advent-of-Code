@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace dev.adventCalendar._2020
 {
@@ -15,22 +17,34 @@ namespace dev.adventCalendar._2020
                 private readonly char[] opSecond = new char[] { '*', '/' };
                 private readonly char[] opFirst = new char[] { '+', '-' };
 
-                public string final;
-                List<(char letter, string eq)> par;
+                private string final;
+                private bool ordered;
+                private List<(char letter, string eq)> par;
 
-                public Equation(string equation)
+                public Thread thread;
+
+                public Equation(string equation, bool ordered)
                 {
                     var (eq, par) = GetParentheses(equation);
                     final = eq;
                     this.par = par;
+                    this.ordered = ordered;
+                    thread = new Thread(() => DoWork());
                 }
 
-                public double Resolve(bool ordered)
+                public void DoWork()
                 {
-                    ResolveParentheses(ordered);
+                    ResolveParentheses();
                     final = ReplaceAllLetters(final);
-                    final = ResolveAllOperands(final, ordered);
-                    return double.Parse(ResolveAllOperands(final, ordered));
+                    final = ResolveAllOperands(final);
+                }
+
+                public double GetResult()
+                    => double.Parse(final);
+
+                public void Resolve()
+                {
+                    thread.Start();
                 }
 
                 private (string, List<(char, string)>) GetParentheses(string eq)
@@ -52,13 +66,13 @@ namespace dev.adventCalendar._2020
                     return (eq, orderedParentheses);
                 }
 
-                private void ResolveParentheses(bool ordered)
+                private void ResolveParentheses()
                 {
                     for (int i = 0; i < par.Count; ++i)
                     {
                         var eq = par[i].eq;
                         eq = ReplaceAllLetters(eq);
-                        eq = ResolveAllOperands(eq, ordered);
+                        eq = ResolveAllOperands(eq);
                         par[i] = (par[i].letter, eq);
                     }
                 }
@@ -75,7 +89,7 @@ namespace dev.adventCalendar._2020
                     return eq;
                 }
 
-                private string ResolveAllOperands(string eq, bool ordered)
+                private string ResolveAllOperands(string eq)
                 {
                     while (eq.IndexOfAny(operators) != -1)
                         eq = ordered ? ResolveOrderedOperands(eq) : ResolveFirstOperands(eq);
@@ -146,28 +160,38 @@ namespace dev.adventCalendar._2020
                 }
             }
 
+            private void WaitAll()
+            {
+                foreach (Equation eq in equations)
+                    eq.thread.Join();
+            }
+
             private List<Equation> equations = new();
 
-            public Math(List<string> eqs)
-                => eqs.ForEach(x => equations.Add(new Equation(x)));
+            public Math(List<string> eqs, bool ordered)
+                => eqs.ForEach(x => equations.Add(new Equation(x, ordered)));
 
-            public double ResolveAll(bool ordered)
-                => equations.Sum(x => x.Resolve(ordered));
+            public double ResolveAll()
+            {
+                foreach (Equation eq in equations)
+                    eq.Resolve();
 
-            public double Resolve(int pos, bool ordered)
-                => equations[pos].Resolve(ordered);
+                WaitAll();
+
+                return equations.Sum(x => x.GetResult());
+            }
         }
 
         public override string ExecuteFirst()
         {
-            var math = new Math(GetFileLines(18).ToList());
-            return math.ResolveAll(false).ToString();
+            var math = new Math(GetFileLines(18).ToList(), false);
+            return math.ResolveAll().ToString();
         }
 
         public override string ExecuteSecond()
         {
-            var math = new Math(GetFileLines(18).ToList());
-            return math.ResolveAll(true).ToString();
+            var math = new Math(GetFileLines(18).ToList(), true);
+            return math.ResolveAll().ToString();
         }
     }
 }
