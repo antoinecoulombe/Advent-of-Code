@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LXurqdf5KQDp7QvDtH9qDikUNpFqE1kXy9aiulZX+/FZlHJ+ODPDi5X5Nj/vKfrI/MI5WP8u3A0lWniPUszg+w==",
+  "dgSpecHash": "B6t66BNqblEWgMG6dhqLvPwArTLKeWWIVxyiiI5H3T1FV1pdGHY5ckbl8ta7ldf6f+m+wkhxsDEECjIFxEGPGQ==",
   "success": true,
   "projectFilePath": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/antoine/.nuget/packages/morelinq/3.3.2/morelinq.3.3.2.nupkg.sha512"
+  ],
   "logs": []
 }

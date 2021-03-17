@@ -151,4 +151,7 @@
     <Folder Include="adventCalendar\2020\ressources\day_25\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="morelinq" Version="3.3.2" />
+  </ItemGroup>
 </Project>

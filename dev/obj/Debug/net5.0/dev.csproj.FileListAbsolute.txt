@@ -13,3 +13,5 @@
 /Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/ref/dev.dll
 /Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.pdb
 /Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.genruntimeconfig.cache
+/Users/antoine/Documents/github/projects/dev/bin/Debug/net5.0/MoreLinq.dll
+/Users/antoine/Documents/github/projects/dev/obj/Debug/net5.0/dev.csproj.CopyComplete
