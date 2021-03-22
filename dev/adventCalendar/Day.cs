@@ -16,6 +16,7 @@ namespace dev.adventCalendar
         {
             try
             {
+                y = y < 2000 ? y + 2000 : y;
                 string path = "";
 
                 if (Program.IsLinux())

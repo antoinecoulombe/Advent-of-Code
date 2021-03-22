@@ -58,8 +58,9 @@ namespace dev.adventCalendar._2020
                 }
             }
 
-            public enum SIDE { up = 1, right = 2, down = 3, left = 4 };
+            public enum SIDE { up = 0, right = 1, down = 2, left = 3 };
 
+            public bool rotated;
             public int id;
             public List<List<bool>> pixels;
             public Dictionary<SIDE, int> sides;
@@ -68,6 +69,14 @@ namespace dev.adventCalendar._2020
             {
                 Parse(input);
                 InitSides();
+            }
+
+            public void Rotate(SIDE side, SIDE match)
+            {
+                int rot = (4 - (int)match + (int)side + 2) % 4;
+                if (rot != 0)
+                    Rotate(rot);
+                rotated = true;
             }
 
             public void Rotate(int rotation)
@@ -103,7 +112,7 @@ namespace dev.adventCalendar._2020
                 };
             }
 
-            private bool AreEquals(List<bool> l1, List<bool> l2)
+            public bool AreEquals(List<bool> l1, List<bool> l2)
             {
                 for (int i = 0; i < l1.Count; ++i)
                     if (l1[i] != l2[i])
@@ -111,8 +120,11 @@ namespace dev.adventCalendar._2020
                 return true;
             }
 
-            public int GetMatchingSide(List<bool> other)
+            public int GetMatchingSide(List<bool> other, SIDE otherSide)
             {
+                if (rotated)
+                    return AreEquals(other, GetSide((SIDE)(((int)otherSide + 2) % 4))) ? (int)otherSide : -1;
+
                 foreach (SIDE s in Enum.GetValues(typeof(SIDE)))
                     if (AreEquals(other, GetSide(s)))
                         return (int)s;
@@ -120,7 +132,6 @@ namespace dev.adventCalendar._2020
             }
         }
 
-        private enum DIR { up = 1, right = 2, down = 3, left = 4 };
         List<Tile> tiles;
 
         private void GetTiles()
@@ -134,30 +145,57 @@ namespace dev.adventCalendar._2020
             });
         }
 
-        #region To Refactor
+        private int GetEmptySidesCount()
+        {
+            int total = 0;
+            tiles.ForEach(x =>
+            {
+                foreach (var s in x.sides)
+                    if (s.Value == -1)
+                        ++total;
+            });
+            return total;
+        }
 
         private void PlaceTiles()
         {
-            foreach (Tile t in tiles)
+            while (GetEmptySidesCount() > 128)
             {
-                foreach (Tile t2 in tiles)
+                foreach (Tile t in tiles)
                 {
-                    foreach (Tile.SIDE s in Enum.GetValues(typeof(Tile.SIDE)))
+                    foreach (var side in t.sides)
                     {
-                        if (t == t2)
+                        if (side.Value != -1)
                             continue;
 
-                        int match = t.GetMatchingSide(t2.GetSide(s));
-                        if (match != -1)
+                        var tLine = t.GetSide(side.Key);
+                        foreach (Tile t2 in tiles)
                         {
-                            int rot = (4 - match + (int)s + 2) % 4;
-                            if (rot != 0)
-                                t2.Rotate(rot);
+                            if (t.id == t2.id)
+                                continue;
+
+                            int match = t2.GetMatchingSide(tLine, side.Key);
+                            if (match == -1)
+                                continue;
+
+                            t2.Rotate(side.Key, (Tile.SIDE)match);
                             t.sides[(Tile.SIDE)match] = t2.id;
+                            t2.sides[(Tile.SIDE)((match + 2) % 4)] = t.id;
                         }
                     }
                 }
+                PrintSides();
             }
+        }
+
+        private void PrintSides()
+        {
+            Func<int, int> count = (int i) => tiles.Count(x => x.sides.Count(y => y.Value != -1) == i);
+
+            Console.WriteLine("4 sides: " + count(4) + "/100");
+            Console.WriteLine("3 sides: " + count(3) + "/40");
+            Console.WriteLine("2 sides: " + count(2) + "/4");
+            Console.WriteLine("0/1 sides (invalid): " + (count(1) + count(0)) + "/144");
         }
 
         private List<List<Tile>> CreatePicture()
@@ -166,19 +204,13 @@ namespace dev.adventCalendar._2020
             return picture;
         }
 
-        #endregion
-
         public override string ExecuteFirst()
         {
             GetTiles();
             PlaceTiles();
             var picture = CreatePicture();
 
-            Console.WriteLine("4 sides: " + tiles.Count(x => x.sides.Count(y => y.Value != -1) == 4) + "/100");
-            Console.WriteLine("3 sides: " + tiles.Count(x => x.sides.Count(y => y.Value != -1) == 3) + "/40");
-            Console.WriteLine("2 sides: " + tiles.Count(x => x.sides.Count(y => y.Value != -1) == 2) + "/4");
-            Console.WriteLine("1 sides (invalid): " + tiles.Count(x => x.sides.Count(y => y.Value != -1) == 1));
-            Console.WriteLine("0 sides (invalid): " + tiles.Count(x => x.sides.Count(y => y.Value != -1) == 0));
+            PrintSides();
 
             return "";
             //return (picture[0][0].id * picture[0][^1].id * picture[^1][0].id * picture[^1][^1].id).ToString();

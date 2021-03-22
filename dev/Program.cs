@@ -19,7 +19,7 @@ namespace dev
         static void Main(string[] args)
         {
             Console.Clear();
-            AdventCalendar.ExecuteDay(20);
+            AdventCalendar.ExecuteDay(5, 15);
             Console.ReadKey();
         }
     }

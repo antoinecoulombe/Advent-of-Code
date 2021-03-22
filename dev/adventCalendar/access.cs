@@ -9,6 +9,7 @@ namespace dev.adventCalendar
 
         public static void ExecuteDay(int d, int y = 2020)
         {
+            y = y < 2000 ? y + 2000 : y;
             Type t = Type.GetType("dev.adventCalendar._" + y.ToString() + 
                 ".Day" + (d < 10 ? "0" : "") + d.ToString());
             Day day = null;
