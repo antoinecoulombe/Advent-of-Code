@@ -153,14 +153,14 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteFirst()
         {
-            var tickets = new Tickets(GetFileLines(16).ToList());
+            var tickets = new Tickets(GetFileLines(16, 2020).ToList());
             return tickets.SumErrorRate().ToString();
         }
 
         public override string ExecuteSecond()
         {
-            var tickets = new Tickets(GetFileLines(16).ToList());
-            tickets.FindConstraintsValue(); 
+            var tickets = new Tickets(GetFileLines(16, 2020).ToList());
+            tickets.FindConstraintsValue();
             return tickets.MultiplyConstraintsValue().ToString();
         }
     }

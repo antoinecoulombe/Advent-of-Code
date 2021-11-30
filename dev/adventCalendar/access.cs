@@ -7,10 +7,10 @@ namespace dev.adventCalendar
     {
         private static Stopwatch watch = new Stopwatch();
 
-        public static void ExecuteDay(int d, int y = 2020)
+        public static void ExecuteDay(int d, int y = 2021)
         {
             y = y < 2000 ? y + 2000 : y;
-            Type t = Type.GetType("dev.adventCalendar._" + y.ToString() + 
+            Type t = Type.GetType("dev.adventCalendar._" + y.ToString() +
                 ".Day" + (d < 10 ? "0" : "") + d.ToString());
             Day day = null;
 

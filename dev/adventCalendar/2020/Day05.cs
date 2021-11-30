@@ -5,7 +5,7 @@ namespace dev.adventCalendar._2020
 {
     class Day05 : Day
     {
-        private int GetPosition(string pass, int startIndex, int maxIndex, 
+        private int GetPosition(string pass, int startIndex, int maxIndex,
             double min, double max, char lowLetter, char highLetter)
         {
             for (int i = startIndex; i <= maxIndex; ++i)
@@ -17,11 +17,11 @@ namespace dev.adventCalendar._2020
             }
             return (int)max;
         }
-        
+
         public override string ExecuteFirst()
         {
             int highestId = 0;
-            foreach (string l in GetFileLines(5))
+            foreach (string l in GetFileLines(5, 2020))
             {
                 int row = GetPosition(l, 0, 6, 0, 127, 'F', 'B'),
                     column = GetPosition(l, 6, 9, 0, 7, 'L', 'R');
@@ -38,7 +38,7 @@ namespace dev.adventCalendar._2020
         {
             var seats = new List<(int, int)>();
 
-            foreach (string l in GetFileLines(5))
+            foreach (string l in GetFileLines(5, 2020))
             {
                 int row = GetPosition(l, 0, 6, 0, 127, 'F', 'B'),
                     column = GetPosition(l, 6, 9, 0, 7, 'L', 'R');
@@ -48,7 +48,7 @@ namespace dev.adventCalendar._2020
 
             for (int i = 1; i < seats.Count; ++i)
             {
-                var rowSeats = seats.FindAll(((int r, int c) s) => s.r == i );
+                var rowSeats = seats.FindAll(((int r, int c) s) => s.r == i);
                 if (rowSeats.Count < 8)
                 {
                     for (int j = 1; j < rowSeats.Count; ++j)

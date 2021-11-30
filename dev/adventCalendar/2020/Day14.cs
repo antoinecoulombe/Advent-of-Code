@@ -9,7 +9,7 @@ namespace dev.adventCalendar._2020
     {
         private List<(string, long, string)> GetMemory()
         {
-            var lines = GetFileLines(14);
+            var lines = GetFileLines(14, 2020);
             var mem = new List<(string, long, string)>();
             foreach (string l in lines)
             {
@@ -138,7 +138,7 @@ namespace dev.adventCalendar._2020
                 var addresses = GetAddressesFromMask(masked);
                 var value = long.Parse(mem[i].val);
 
-                foreach (string addr in addresses) 
+                foreach (string addr in addresses)
                 {
                     var exist = newAddresses.Find(x => x.Item1 == addr);
 

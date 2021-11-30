@@ -137,7 +137,7 @@ namespace dev.adventCalendar._2020
         private void GetTiles()
         {
             tiles = new();
-            var tileStrings = GetFileText(20).Split("\n\n").ToList();
+            var tileStrings = GetFileText(20, 2020).Split("\n\n").ToList();
             tileStrings.ForEach(t =>
             {
                 if (!string.IsNullOrEmpty(t))

@@ -149,9 +149,15 @@
     <Folder Include="adventCalendar\2020\ressources\day_23\" />
     <Folder Include="adventCalendar\2020\ressources\day_24\" />
     <Folder Include="adventCalendar\2020\ressources\day_25\" />
+    <Folder Include="adventCalendar\2021\" />
+    <Folder Include="adventCalendar\2021\ressources\day_03\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="morelinq" Version="3.3.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="adventCalendar\2021\" />
+    <None Remove="adventCalendar\2021\ressources\day_03\" />
   </ItemGroup>
 </Project>

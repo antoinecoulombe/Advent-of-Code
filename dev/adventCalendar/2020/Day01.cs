@@ -6,7 +6,7 @@ namespace dev.adventCalendar._2020
     {
         public override string ExecuteFirst()
         {
-            int[] n = GetIntegers(1);
+            int[] n = GetIntegers(1, 2020);
             for (int i = 0; i < n.Length; ++i)
                 for (int j = i + 1; j < n.Length; ++j)
                     if (n[i] + n[j] == 2020)
@@ -17,7 +17,7 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond()
         {
-            int[] n = GetIntegers(1);
+            int[] n = GetIntegers(1, 2020);
             for (int i = 0; i < n.Length; ++i)
                 for (int j = i + 1; j < n.Length; ++j)
                     for (int k = j + 1; k < n.Length; ++k)

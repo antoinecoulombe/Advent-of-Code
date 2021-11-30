@@ -54,13 +54,13 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteFirst()
         {
-            var numbers = GetDoubles(9);
+            var numbers = GetDoubles(9, 2020);
             return numbers[FindInvalidPos(ref numbers)].ToString();
         }
 
         public override string ExecuteSecond()
         {
-            var numbers = GetDoubles(9);
+            var numbers = GetDoubles(9, 2020);
             return FindSum(ref numbers, FindInvalidPos(ref numbers)).ToString();
         }
     }

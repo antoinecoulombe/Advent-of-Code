@@ -12,7 +12,7 @@ namespace dev.adventCalendar
         public abstract string ExecuteFirst();
         public abstract string ExecuteSecond();
 
-        protected static string GetRessourcePath(int d, int y = 2020, string fileName = null)
+        protected static string GetRessourcePath(int d, int y, string fileName = null)
         {
             try
             {
@@ -34,34 +34,36 @@ namespace dev.adventCalendar
             catch (Exception) { return null; }
         }
 
-        protected static string[] GetFileLines(int d, int y = 2020, string fileName = "input.txt")
+        protected static string[] GetFileLines(int d, int y, string fileName = "input.txt")
         {
-            try {
-                return File.ReadAllLines(GetRessourcePath(d, y, fileName)); }
+            try
+            {
+                return File.ReadAllLines(GetRessourcePath(d, y, fileName));
+            }
             catch (Exception) { return null; }
         }
-        protected static string GetFileText(int d, int y = 2020, string fileName = "input.txt")
+        protected static string GetFileText(int d, int y, string fileName = "input.txt")
         {
             try { return File.ReadAllText(GetRessourcePath(d, y, fileName)); }
             catch (Exception) { return null; }
         }
 
-        protected static int[] GetIntegers(int d, int y = 2020, string fileName = "input.txt")
+        protected static int[] GetIntegers(int d, int y, string fileName = "input.txt")
         {
             try { return Array.ConvertAll(GetFileLines(d, y, fileName), sn => int.Parse(sn)); }
             catch (Exception) { return null; }
         }
 
-        protected static double[] GetDoubles(int d, int y = 2020, string fileName = "input.txt")
+        protected static double[] GetDoubles(int d, int y, string fileName = "input.txt")
         {
             try { return Array.ConvertAll(GetFileLines(d, y, fileName), sn => double.Parse(sn)); }
             catch (Exception) { return null; }
         }
 
-        protected static void WriteToFile(string line, int d, int y = 2020, string fileName = "output.txt")
+        protected static void WriteToFile(string line, int d, int y, string fileName = "output.txt")
             => WriteToFile(new List<string>() { line }, d, y, fileName);
 
-        protected static void WriteToFile(List<string> lines, int d, int y = 2020, string fileName = "output.txt")
+        protected static void WriteToFile(List<string> lines, int d, int y, string fileName = "output.txt")
             => File.WriteAllLines(GetRessourcePath(d, y, fileName), lines);
     }
 }

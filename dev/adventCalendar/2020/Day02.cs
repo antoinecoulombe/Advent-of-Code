@@ -5,7 +5,7 @@
         public override string ExecuteFirst()
         {
             int correct = 0;
-            foreach (string l in GetFileLines(2))
+            foreach (string l in GetFileLines(2, 2020))
             {
                 var s = l.Split('-', ' ', ':');
                 int count = 0;
@@ -21,7 +21,7 @@
         public override string ExecuteSecond()
         {
             int correct = 0;
-            foreach (string l in GetFileLines(2))
+            foreach (string l in GetFileLines(2, 2020))
             {
                 var s = l.Split('-', ' ', ':');
                 int[] i = new int[] { int.Parse(s[0]) - 1, int.Parse(s[1]) - 1 };

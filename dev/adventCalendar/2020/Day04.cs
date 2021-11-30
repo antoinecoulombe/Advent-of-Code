@@ -56,7 +56,7 @@ namespace dev.adventCalendar._2020
         {
             var fields = GetFields();
             int valid = 0;
-            foreach (string l in GetFileLines(4))
+            foreach (string l in GetFileLines(4, 2020))
             {
                 if (l.Trim().Length == 0)
                 {

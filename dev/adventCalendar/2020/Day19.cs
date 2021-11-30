@@ -10,7 +10,7 @@ namespace dev.adventCalendar._2020
         private enum LETTERS { a = 250, b = 251 }
         private (Dictionary<int, List<List<Rule>>>, List<string>) GetParts()
         {
-            var input = GetFileLines(19);
+            var input = GetFileLines(19, 2020);
             var rules = ParseRules(input.TakeWhile(x => !string.IsNullOrWhiteSpace(x)).ToList());
             var messages = input.SkipWhile(x => !string.IsNullOrWhiteSpace(x)).Skip(1);
             return (rules, messages.ToList());

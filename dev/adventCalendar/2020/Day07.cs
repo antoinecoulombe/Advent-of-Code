@@ -8,7 +8,7 @@ namespace dev.adventCalendar._2020
         private void InitBags()
         {
             Bags = new List<Bag>();
-            var lines = GetFileLines(7);
+            var lines = GetFileLines(7, 2020);
             foreach (string l in lines)
             {
                 string[] bag = l.Split(" bags contain ");

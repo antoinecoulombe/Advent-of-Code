@@ -9,7 +9,7 @@ namespace dev.adventCalendar._2020
     {
         private int SumAdapters()
         {
-            List<int> n = new List<int>(GetIntegers(10));
+            List<int> n = new List<int>(GetIntegers(10, 2020));
             n.Add(n.Max() + 3);
 
             int diff3 = 0, diff1 = 0;
@@ -39,7 +39,7 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond() // too low - 1215012992
         {
-            List<int> n = new List<int>(GetIntegers(10));
+            List<int> n = new List<int>(GetIntegers(10, 2020));
             n.Add(n.Max() + 3);
 
             return "";

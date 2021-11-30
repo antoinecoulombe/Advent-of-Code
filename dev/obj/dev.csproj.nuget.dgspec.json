@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/antoine/Documents/github/projects/dev/dev.csproj": {}
+    "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/github/projects/dev/dev.csproj": {}
   },
   "projects": {
-    "/Users/antoine/Documents/github/projects/dev/dev.csproj": {
+    "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/github/projects/dev/dev.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
+        "projectUniqueName": "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/github/projects/dev/dev.csproj",
         "projectName": "dev",
-        "projectPath": "/Users/antoine/Documents/github/projects/dev/dev.csproj",
+        "projectPath": "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/github/projects/dev/dev.csproj",
         "packagesPath": "/Users/antoine/.nuget/packages/",
-        "outputPath": "/Users/antoine/Documents/github/projects/dev/obj/",
+        "outputPath": "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/github/projects/dev/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.201/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

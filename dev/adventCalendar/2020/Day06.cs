@@ -10,7 +10,7 @@ namespace dev.adventCalendar._2020
             List<char> allQ = new List<char>();
             int total = 0;
 
-            foreach (string l in GetFileLines(6))
+            foreach (string l in GetFileLines(6, 2020))
             {
                 foreach (char c in l)
                     if (!allQ.Contains(c))
@@ -28,8 +28,8 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond()
         {
-            var lines = GetFileLines(6);
-            char[] allQ = lines[0].ToCharArray(); 
+            var lines = GetFileLines(6, 2020);
+            char[] allQ = lines[0].ToCharArray();
             int total = 0;
 
             for (int i = 0; i < lines.Length; ++i)

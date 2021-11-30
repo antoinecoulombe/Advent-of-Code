@@ -182,13 +182,13 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteFirst()
         {
-            var math = new Math(GetFileLines(18).ToList(), false);
+            var math = new Math(GetFileLines(18, 2020).ToList(), false);
             return math.ResolveAll().ToString();
         }
 
         public override string ExecuteSecond()
         {
-            var math = new Math(GetFileLines(18).ToList(), true);
+            var math = new Math(GetFileLines(18, 2020).ToList(), true);
             return math.ResolveAll().ToString();
         }
     }

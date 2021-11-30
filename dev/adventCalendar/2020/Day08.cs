@@ -9,7 +9,7 @@ namespace dev.adventCalendar._2020
         private List<(string, char, int, bool)> GetOperations()
         {
             List<(string, char, int, bool)> ops = new List<(string, char, int, bool)>();
-            string[] lines = GetFileLines(8);
+            string[] lines = GetFileLines(8, 2020);
             foreach (string l in lines)
             {
                 string[] split = l.Split(' ');

@@ -4,7 +4,7 @@
     {
         private int GetTreesEncountered(int movX, int movY)
         {
-            var rows = GetFileLines(3);
+            var rows = GetFileLines(3, 2020);
             int trees = 0;
             for (int x = 0, y = 0; y < rows.Length; y += movY, x += movX)
                 if (rows[y][x % rows[y].Length] == '#')
@@ -15,7 +15,7 @@
             => GetTreesEncountered(3, 1).ToString();
 
         public override string ExecuteSecond()
-            => (GetTreesEncountered(1,1) *
+            => (GetTreesEncountered(1, 1) *
                 GetTreesEncountered(3, 1) *
                 GetTreesEncountered(5, 1) *
                 GetTreesEncountered(7, 1) *

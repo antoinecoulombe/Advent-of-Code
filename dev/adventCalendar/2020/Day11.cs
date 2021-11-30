@@ -7,7 +7,7 @@ namespace dev.adventCalendar._2020
 {
     class Day11 : Day
     {
-        private bool Exists(ref List<string> seats, int i, int j) 
+        private bool Exists(ref List<string> seats, int i, int j)
             => seats.ElementAtOrDefault(i) != null && seats[i].ElementAtOrDefault(j) != '\0';
 
         private bool IsSeat(ref List<string> seats, int i, int j)
@@ -138,7 +138,7 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteFirst()
         {
-            var currSeats = new List<string>(GetFileLines(11));
+            var currSeats = new List<string>(GetFileLines(11, 2020));
             List<string> nextSeats = null;
             do
             {
@@ -151,7 +151,7 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond()
         {
-            var currSeats = new List<string>(GetFileLines(11));
+            var currSeats = new List<string>(GetFileLines(11, 2020));
             List<string> nextSeats = null;
             do
             {

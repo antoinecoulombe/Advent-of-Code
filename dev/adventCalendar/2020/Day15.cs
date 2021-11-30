@@ -11,9 +11,9 @@
 
             private void InitTurns()
             {
-                turns = new (int,int)[toPlay];
+                turns = new (int, int)[toPlay];
                 for (int i = 0; i < toPlay; ++i)
-                    turns[i] = (-1,-1);
+                    turns[i] = (-1, -1);
             }
 
             public Turns(string[] firstTurns, int toPlay)
@@ -45,7 +45,7 @@
         }
 
         private Turns InitTurns(int turns)
-            => new Turns(GetFileLines(15)[0].Split(','), turns);
+            => new Turns(GetFileLines(15, 2020)[0].Split(','), turns);
 
         public override string ExecuteFirst()
         {

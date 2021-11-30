@@ -75,14 +75,14 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteFirst()
         {
-            var l = GetFileLines(13);
+            var l = GetFileLines(13, 2020);
             (int time, int id) fastest = GetFastestBus(int.Parse(l[0]), GetBusIds(l[1]));
             return (fastest.time * fastest.id).ToString();
         }
 
         public override string ExecuteSecond()
         {
-            var buses = GetBusesInfo(GetFileLines(13)[1].Split(',').ToList());
+            var buses = GetBusesInfo(GetFileLines(13, 2020)[1].Split(',').ToList());
             return GetCRTValue(buses).ToString();
         }
     }

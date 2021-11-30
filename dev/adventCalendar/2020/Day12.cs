@@ -98,7 +98,7 @@ namespace dev.adventCalendar._2020
         private class Ship2 : Ship
         {
             private enum DIR { NORTH = 1, EAST = 2, SOUTH = 3, WEST = 4 }
-            private ((DIR direction, int distance) dir1, (DIR direction, int distance)dir2) waypoint;
+            private ((DIR direction, int distance) dir1, (DIR direction, int distance) dir2) waypoint;
 
             public Ship2()
             {
@@ -129,7 +129,7 @@ namespace dev.adventCalendar._2020
                 return (DIR)move;
             }
 
-            private void RedirectWaypoint(ref (DIR direction, int distance)way, int move)
+            private void RedirectWaypoint(ref (DIR direction, int distance) way, int move)
             {
                 move += (int)way.direction;
                 if (move < 1)
@@ -139,14 +139,14 @@ namespace dev.adventCalendar._2020
                 way.direction = (DIR)move;
             }
 
-            private void RotateWaypoint(ref (DIR direction, int distance)way, char dir, int num)
+            private void RotateWaypoint(ref (DIR direction, int distance) way, char dir, int num)
             {
                 int move = num == 90 ? 1 : (num == 180 ? 2 : 3);
                 move = dir == 'R' ? move : -move;
                 RedirectWaypoint(ref way, move);
             }
 
-            private void MoveWaypoint(ref (DIR direction, int distance)way, DIR dir, int num)
+            private void MoveWaypoint(ref (DIR direction, int distance) way, DIR dir, int num)
             {
                 if (way.direction == dir)
                     way.distance += num;
@@ -196,10 +196,10 @@ namespace dev.adventCalendar._2020
                 }
             }
         }
-        
+
         public override string ExecuteFirst()
         {
-            var lines = new List<string>(GetFileLines(12));
+            var lines = new List<string>(GetFileLines(12, 2020));
             Ship1 ship = new Ship1();
             foreach (string l in lines)
                 ship.Move(l[0], int.Parse(l.Substring(1)));
@@ -208,7 +208,7 @@ namespace dev.adventCalendar._2020
 
         public override string ExecuteSecond()
         {
-            var lines = new List<string>(GetFileLines(12));
+            var lines = new List<string>(GetFileLines(12, 2020));
             Ship2 ship = new Ship2();
             foreach (string l in lines)
                 ship.Move(l[0], int.Parse(l.Substring(1)));
