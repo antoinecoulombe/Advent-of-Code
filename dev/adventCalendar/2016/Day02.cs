@@ -4,16 +4,17 @@ using System.Text;
 
 namespace dev.adventCalendar._2016
 {
-    class Day02 : Day
+  class Day02 : Day
+  {
+    public override string ExecuteFirst()
     {
-        public override string ExecuteFirst()
-        {
-            return "";
-        }
-
-        public override string ExecuteSecond()
-        {
-            return "";
-        }
+      var lines = GetFileLines();
+      return "";
     }
+
+    public override string ExecuteSecond()
+    {
+      return "";
+    }
+  }
 }

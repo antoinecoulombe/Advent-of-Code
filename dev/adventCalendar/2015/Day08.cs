@@ -6,21 +6,21 @@ using System.Linq;
 
 namespace dev.adventCalendar._2015
 {
-    class Day08 : Day
+  class Day08 : Day
+  {
+    public override string ExecuteFirst()
     {
-        public override string ExecuteFirst()
-        {
-            var l = GetFileLines(8, 15);
-            return l.Sum(s => s.Length - Regex.Replace(
-                s[1..^1].Replace("\\\"", "A").Replace("\\\\", "B"),
-                "\\\\x[a-f0-9]{2}", "C").Length).ToString();
-        }
-
-        public override string ExecuteSecond()
-        {
-            var l = GetFileLines(8, 15);
-            return l.Sum(s => s.Replace("\\", "AA")
-                .Replace("\"", "BB").Length + 2 - s.Length).ToString();
-        }
+      var l = GetFileLines();
+      return l.Sum(s => s.Length - Regex.Replace(
+          s[1..^1].Replace("\\\"", "A").Replace("\\\\", "B"),
+          "\\\\x[a-f0-9]{2}", "C").Length).ToString();
     }
+
+    public override string ExecuteSecond()
+    {
+      var l = GetFileLines();
+      return l.Sum(s => s.Replace("\\", "AA")
+          .Replace("\"", "BB").Length + 2 - s.Length).ToString();
+    }
+  }
 }

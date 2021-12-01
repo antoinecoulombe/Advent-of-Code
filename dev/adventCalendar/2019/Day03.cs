@@ -1,17 +1,17 @@
 ﻿namespace dev.adventCalendar._2019
 {
-    class Day03 : Day
+  class Day03 : Day
+  {
+    public override string ExecuteFirst()
     {
-        public override string ExecuteFirst()
-        {
-            string[] l = GetFileLines(3, 2019);
-            return "";
-        }
-
-        public override string ExecuteSecond()
-        {
-            string[] l = GetFileLines(3, 2019);
-            return "";
-        }
+      string[] l = GetFileLines();
+      return "";
     }
+
+    public override string ExecuteSecond()
+    {
+      string[] l = GetFileLines();
+      return "";
+    }
+  }
 }
