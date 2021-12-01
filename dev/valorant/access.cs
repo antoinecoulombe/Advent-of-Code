@@ -13,7 +13,7 @@ namespace projects.valorant
             xp.Write(destinationLevels);
         }
 
-        // Valorant.MapSelector(new string { "GayLord", "FuckFace", "ShitLoad", "CuntNugget", "TurdOnAStrick" });
+        // Valorant.MapSelector(new string[] { "GayLord", "FuckFace", "ShitLoad", "CuntNugget", "TurdOnAStrick" });
         public static void MapSelector(string[] playerNames)
         {
             string[] players = playerNames;

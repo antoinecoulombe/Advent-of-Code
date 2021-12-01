@@ -22,12 +22,12 @@ namespace dev.adventCalendar
                 if (Program.IsLinux())
                 {
                     sep = "/";
-                    path = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + sep;
+                    path = Environment.CurrentDirectory + sep;
                 }
                 else
                     path = System.Reflection.Assembly.GetExecutingAssembly().Location
                         .Substring(0, path.LastIndexOf(baseFolder) + baseFolder.Length);
-
+                // "/Users/antoine/Library/Mobile Documents/com~apple~CloudDocs/Documents/[github/projects/dev/]"
                 return path + "adventCalendar" + sep + y.ToString() + sep + "ressources" + sep + "day_" +
                     (d < 10 ? "0" : "") + d.ToString() + sep + fileName ?? "";
             }

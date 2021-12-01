@@ -1,4 +1,5 @@
 ﻿using dev.adventCalendar;
+using projects.valorant;
 
 using System;
 
@@ -20,7 +21,7 @@ namespace dev
         {
             Console.Clear();
             AdventCalendar.ExecuteDay(1);
-            Console.ReadKey();
+            // Console.ReadLine();
         }
     }
 }
