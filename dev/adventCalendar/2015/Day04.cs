@@ -31,6 +31,6 @@ namespace dev.adventCalendar._2015
         => GetNumberStartingWith("00000").ToString();
 
     public override string ExecuteSecond()
-        => ""; // GetNumberStartingWith("000000").ToString();
+        => GetNumberStartingWith("000000").ToString();
   }
 }
