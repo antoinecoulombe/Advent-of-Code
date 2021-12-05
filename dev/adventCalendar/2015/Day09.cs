@@ -7,6 +7,7 @@ namespace dev.adventCalendar._2015
 {
   class Day09 : Day
   {
+    private static string[] lines = GetFileLines();
     private class Route
     {
       public string from;
@@ -23,48 +24,29 @@ namespace dev.adventCalendar._2015
       }
     }
 
-    private List<Route> GetRoutes()
-        => GetFileLines().Select(s => new Route(s)).ToList();
-
-    private int countCities(List<Route> routes)
+    private List<(string node, int dist, string prevNode)> GetInitTable()
     {
-      List<string> cities = new();
-      foreach (var r in routes)
-      {
-        if (!cities.Contains(r.from))
-          cities.Add(r.from);
-        if (!cities.Contains(r.to))
-          cities.Add(r.to);
-      }
-      return cities.Count;
+      return lines.Select(s => new Route(s))
+        .GroupBy(x => x.from)
+        .Select(x => (x.Key, int.MaxValue, "-")).ToList();
     }
 
-    private List<List<string>> GetPossibilities(List<Route> routes)
+    //IEnumerable<IGrouping<string, Route>> GetRoutes()
+    private List<Route> GetNodes()
     {
-      List<List<string>> poss = new();
-      poss.Add(new List<string> { routes[0].from });
+      return lines.Select(s => new Route(s)).ToList();
+    }
 
-      while (routes.Count > 0)
-      {
-        foreach (var p in poss)
-        {
-
-        }
-      }
-      return poss;
+    private int Execute(bool max = false)
+    {
+      // DIJKSTRA algorithm (IFT585 - TP2)
+      return 0;
     }
 
     public override string ExecuteFirst()
-    {
-      // var routes = GetRoutes();
-      // var cityCount = countCities(routes);
-      // var poss = GetPossibilities(routes);
-      return "";
-    }
+      => Execute().ToString();
 
     public override string ExecuteSecond()
-    {
-      return "";
-    }
+      => Execute(true).ToString();
   }
 }

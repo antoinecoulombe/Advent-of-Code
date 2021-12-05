@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 
 namespace dev.adventCalendar
 {
@@ -39,17 +40,46 @@ namespace dev.adventCalendar
       catch (Exception) { return null; }
     }
 
+    private static string GetUrlFromPath(string path)
+    {
+      int year = int.Parse(path.Substring(path.IndexOf("adventCalendar/") + "adventCalendar/".Length, 4));
+      int day = int.Parse(path.Substring(path.IndexOf("day_") + "day_".Length, 2));
+      return $"https://adventofcode.com/{year}/day/{day}/input";
+    }
+
+    private static string DownloadIfNotExists(string path)
+    {
+      if (path == null)
+        return path;
+
+      if (!File.Exists(path))
+      {
+        Console.WriteLine("File not found locally. Proceeding to download from AoC's website.");
+        using (var client = new WebClient())
+        {
+          string session = "53616c7465645f5fbd365523b8606559343c4883fdee8f3c75cd846ae012b5be9cd1e9437f6d10c15ec8cb265d80a1ea";
+          client.Headers.Add(HttpRequestHeader.Cookie, $"session={session}");
+
+          string url = GetUrlFromPath(path);
+          client.DownloadFile(url, path);
+          Console.WriteLine($"File downloaded from url '{url}'");
+        }
+      }
+
+      return path;
+    }
+
     protected static string[] GetFileLines(string fileName = "input.txt")
     {
       try
       {
-        return File.ReadAllLines(GetRessourcePath(fileName));
+        return File.ReadAllLines(DownloadIfNotExists(GetRessourcePath(fileName)));
       }
       catch (Exception e) { Console.WriteLine(e.Message); return null; }
     }
     protected static string GetFileText(string fileName = "input.txt")
     {
-      try { return File.ReadAllText(GetRessourcePath(fileName)); }
+      try { return File.ReadAllText(DownloadIfNotExists(GetRessourcePath(fileName))); }
       catch (Exception e) { Console.WriteLine(e.Message); return null; }
     }
 
