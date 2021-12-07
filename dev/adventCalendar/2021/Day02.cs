@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-
-namespace dev.adventCalendar._2021
+﻿namespace dev.adventCalendar._2021
 {
   class Day02 : Day
   {
