@@ -1,8 +1,3 @@
-.vs/
-
-dev/bin/Release
-dev/bin/Debug
-dev/obj/Release
-dev/obj/Debug
-
 .DS_Store
+obj
+bin

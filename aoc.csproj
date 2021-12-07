@@ -1,0 +1,163 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="puzzles\2015\ressources\day_01\" />
+    <Folder Include="puzzles\2015\ressources\day_02\" />
+    <Folder Include="puzzles\2015\ressources\day_03\" />
+    <Folder Include="puzzles\2015\ressources\day_04\" />
+    <Folder Include="puzzles\2015\ressources\day_05\" />
+    <Folder Include="puzzles\2015\ressources\day_06\" />
+    <Folder Include="puzzles\2015\ressources\day_07\" />
+    <Folder Include="puzzles\2015\ressources\day_08\" />
+    <Folder Include="puzzles\2015\ressources\day_09\" />
+    <Folder Include="puzzles\2015\ressources\day_10\" />
+    <Folder Include="puzzles\2015\ressources\day_11\" />
+    <Folder Include="puzzles\2015\ressources\day_12\" />
+    <Folder Include="puzzles\2015\ressources\day_13\" />
+    <Folder Include="puzzles\2015\ressources\day_14\" />
+    <Folder Include="puzzles\2015\ressources\day_15\" />
+    <Folder Include="puzzles\2015\ressources\day_16\" />
+    <Folder Include="puzzles\2015\ressources\day_17\" />
+    <Folder Include="puzzles\2015\ressources\day_18\" />
+    <Folder Include="puzzles\2015\ressources\day_19\" />
+    <Folder Include="puzzles\2015\ressources\day_20\" />
+    <Folder Include="puzzles\2015\ressources\day_21\" />
+    <Folder Include="puzzles\2015\ressources\day_22\" />
+    <Folder Include="puzzles\2015\ressources\day_23\" />
+    <Folder Include="puzzles\2015\ressources\day_24\" />
+    <Folder Include="puzzles\2015\ressources\day_25\" />
+    <Folder Include="puzzles\2016\ressources\day_01\" />
+    <Folder Include="puzzles\2016\ressources\day_02\" />
+    <Folder Include="puzzles\2016\ressources\day_03\" />
+    <Folder Include="puzzles\2016\ressources\day_04\" />
+    <Folder Include="puzzles\2016\ressources\day_05\" />
+    <Folder Include="puzzles\2016\ressources\day_06\" />
+    <Folder Include="puzzles\2016\ressources\day_07\" />
+    <Folder Include="puzzles\2016\ressources\day_08\" />
+    <Folder Include="puzzles\2016\ressources\day_09\" />
+    <Folder Include="puzzles\2016\ressources\day_10\" />
+    <Folder Include="puzzles\2016\ressources\day_11\" />
+    <Folder Include="puzzles\2016\ressources\day_12\" />
+    <Folder Include="puzzles\2016\ressources\day_13\" />
+    <Folder Include="puzzles\2016\ressources\day_14\" />
+    <Folder Include="puzzles\2016\ressources\day_15\" />
+    <Folder Include="puzzles\2016\ressources\day_16\" />
+    <Folder Include="puzzles\2016\ressources\day_17\" />
+    <Folder Include="puzzles\2016\ressources\day_18\" />
+    <Folder Include="puzzles\2016\ressources\day_19\" />
+    <Folder Include="puzzles\2016\ressources\day_20\" />
+    <Folder Include="puzzles\2016\ressources\day_21\" />
+    <Folder Include="puzzles\2016\ressources\day_22\" />
+    <Folder Include="puzzles\2016\ressources\day_23\" />
+    <Folder Include="puzzles\2016\ressources\day_24\" />
+    <Folder Include="puzzles\2016\ressources\day_25\" />
+    <Folder Include="puzzles\2017\ressources\day_01\" />
+    <Folder Include="puzzles\2017\ressources\day_02\" />
+    <Folder Include="puzzles\2017\ressources\day_03\" />
+    <Folder Include="puzzles\2017\ressources\day_04\" />
+    <Folder Include="puzzles\2017\ressources\day_05\" />
+    <Folder Include="puzzles\2017\ressources\day_06\" />
+    <Folder Include="puzzles\2017\ressources\day_07\" />
+    <Folder Include="puzzles\2017\ressources\day_08\" />
+    <Folder Include="puzzles\2017\ressources\day_09\" />
+    <Folder Include="puzzles\2017\ressources\day_10\" />
+    <Folder Include="puzzles\2017\ressources\day_11\" />
+    <Folder Include="puzzles\2017\ressources\day_12\" />
+    <Folder Include="puzzles\2017\ressources\day_13\" />
+    <Folder Include="puzzles\2017\ressources\day_14\" />
+    <Folder Include="puzzles\2017\ressources\day_15\" />
+    <Folder Include="puzzles\2017\ressources\day_16\" />
+    <Folder Include="puzzles\2017\ressources\day_17\" />
+    <Folder Include="puzzles\2017\ressources\day_18\" />
+    <Folder Include="puzzles\2017\ressources\day_19\" />
+    <Folder Include="puzzles\2017\ressources\day_20\" />
+    <Folder Include="puzzles\2017\ressources\day_21\" />
+    <Folder Include="puzzles\2017\ressources\day_22\" />
+    <Folder Include="puzzles\2017\ressources\day_23\" />
+    <Folder Include="puzzles\2017\ressources\day_24\" />
+    <Folder Include="puzzles\2017\ressources\day_25\" />
+    <Folder Include="puzzles\2018\ressources\day_01\" />
+    <Folder Include="puzzles\2018\ressources\day_02\" />
+    <Folder Include="puzzles\2018\ressources\day_03\" />
+    <Folder Include="puzzles\2018\ressources\day_04\" />
+    <Folder Include="puzzles\2018\ressources\day_05\" />
+    <Folder Include="puzzles\2018\ressources\day_06\" />
+    <Folder Include="puzzles\2018\ressources\day_07\" />
+    <Folder Include="puzzles\2018\ressources\day_08\" />
+    <Folder Include="puzzles\2018\ressources\day_09\" />
+    <Folder Include="puzzles\2018\ressources\day_10\" />
+    <Folder Include="puzzles\2018\ressources\day_11\" />
+    <Folder Include="puzzles\2018\ressources\day_12\" />
+    <Folder Include="puzzles\2018\ressources\day_13\" />
+    <Folder Include="puzzles\2018\ressources\day_14\" />
+    <Folder Include="puzzles\2018\ressources\day_15\" />
+    <Folder Include="puzzles\2018\ressources\day_16\" />
+    <Folder Include="puzzles\2018\ressources\day_17\" />
+    <Folder Include="puzzles\2018\ressources\day_18\" />
+    <Folder Include="puzzles\2018\ressources\day_19\" />
+    <Folder Include="puzzles\2018\ressources\day_20\" />
+    <Folder Include="puzzles\2018\ressources\day_21\" />
+    <Folder Include="puzzles\2018\ressources\day_22\" />
+    <Folder Include="puzzles\2018\ressources\day_23\" />
+    <Folder Include="puzzles\2018\ressources\day_24\" />
+    <Folder Include="puzzles\2018\ressources\day_25\" />
+    <Folder Include="puzzles\2019\ressources\day_03\" />
+    <Folder Include="puzzles\2019\ressources\day_04\" />
+    <Folder Include="puzzles\2019\ressources\day_05\" />
+    <Folder Include="puzzles\2019\ressources\day_06\" />
+    <Folder Include="puzzles\2019\ressources\day_07\" />
+    <Folder Include="puzzles\2019\ressources\day_08\" />
+    <Folder Include="puzzles\2019\ressources\day_09\" />
+    <Folder Include="puzzles\2019\ressources\day_10\" />
+    <Folder Include="puzzles\2019\ressources\day_11\" />
+    <Folder Include="puzzles\2019\ressources\day_12\" />
+    <Folder Include="puzzles\2019\ressources\day_13\" />
+    <Folder Include="puzzles\2019\ressources\day_14\" />
+    <Folder Include="puzzles\2019\ressources\day_15\" />
+    <Folder Include="puzzles\2019\ressources\day_16\" />
+    <Folder Include="puzzles\2019\ressources\day_17\" />
+    <Folder Include="puzzles\2019\ressources\day_18\" />
+    <Folder Include="puzzles\2019\ressources\day_19\" />
+    <Folder Include="puzzles\2019\ressources\day_20\" />
+    <Folder Include="puzzles\2019\ressources\day_21\" />
+    <Folder Include="puzzles\2019\ressources\day_22\" />
+    <Folder Include="puzzles\2019\ressources\day_23\" />
+    <Folder Include="puzzles\2019\ressources\day_24\" />
+    <Folder Include="puzzles\2019\ressources\day_25\" />
+    <Folder Include="puzzles\2020\ressources\day_06\" />
+    <Folder Include="puzzles\2020\ressources\day_07\" />
+    <Folder Include="puzzles\2020\ressources\day_08\" />
+    <Folder Include="puzzles\2020\ressources\day_09\" />
+    <Folder Include="puzzles\2020\ressources\day_10\" />
+    <Folder Include="puzzles\2020\ressources\day_11\" />
+    <Folder Include="puzzles\2020\ressources\day_12\" />
+    <Folder Include="puzzles\2020\ressources\day_13\" />
+    <Folder Include="puzzles\2020\ressources\day_14\" />
+    <Folder Include="puzzles\2020\ressources\day_15\" />
+    <Folder Include="puzzles\2020\ressources\day_16\" />
+    <Folder Include="puzzles\2020\ressources\day_17\" />
+    <Folder Include="puzzles\2020\ressources\day_18\" />
+    <Folder Include="puzzles\2020\ressources\day_19\" />
+    <Folder Include="puzzles\2020\ressources\day_20\" />
+    <Folder Include="puzzles\2020\ressources\day_21\" />
+    <Folder Include="puzzles\2020\ressources\day_22\" />
+    <Folder Include="puzzles\2020\ressources\day_23\" />
+    <Folder Include="puzzles\2020\ressources\day_24\" />
+    <Folder Include="puzzles\2020\ressources\day_25\" />
+    <Folder Include="puzzles\2021\" />
+    <Folder Include="puzzles\2021\ressources\day_03\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="morelinq" Version="3.3.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="adventCalendar\2021\" />
+    <None Remove="adventCalendar\2021\ressources\day_03\" />
+  </ItemGroup>
+</Project>
