@@ -1,0 +1,15 @@
+namespace aoc.puzzles._{PUZZLE_YEAR}
+{
+  class Day{PUZZLE_DAY} : Day
+  {
+    public override string ExecuteFirst()
+    {
+      return "Not implemented yet";
+    }
+
+    public override string ExecuteSecond()
+    {
+      return "Not implemented yet";
+    }
+  }
+}

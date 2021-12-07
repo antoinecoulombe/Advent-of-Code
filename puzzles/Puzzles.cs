@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
 namespace aoc.puzzles
 {
   static class Puzzles
   {
     const int CURRENT_YEAR = 2021;
+
     private static Stopwatch watch = new Stopwatch();
 
     public static void ExecuteAll()
@@ -13,6 +15,16 @@ namespace aoc.puzzles
       for (int i = 2015; i <= CURRENT_YEAR; ++i)
         for (int j = 1; j <= 25; ++j)
           Execute(j, i);
+    }
+
+    private static void CreateFiles(string year, string day)
+    {
+      Directory.CreateDirectory(Path.Combine(Day.GetBasePath(), "puzzles", year, "ressources", $"day_{day}"));
+      Console.WriteLine($"Created ressource folder.");
+      string template = File.ReadAllText(Path.Combine(Day.GetBasePath(), "puzzles", "template.txt"))
+        .Replace("{PUZZLE_YEAR}", year).Replace("{PUZZLE_DAY}", day);
+      File.WriteAllText(Path.Combine(Day.GetBasePath(), "puzzles", year, $"Day{day}.cs"), template);
+      Console.WriteLine("Created c# file from template.");
     }
 
     public static void Execute(int d, int y = CURRENT_YEAR)
@@ -27,8 +39,15 @@ namespace aoc.puzzles
       }
       catch (Exception)
       {
-        Console.WriteLine("Le défi pour ce jour n'est pas encore implémenté.");
-        // TODO: Create file
+        if (d < 1 || d > 25)
+          Console.WriteLine("Error - Day must be between 1 and 25.");
+        else if (int.Parse(yString) < 2015 || int.Parse(yString) > CURRENT_YEAR + 1)
+          Console.WriteLine($"Error - Year must be between 2015 and {CURRENT_YEAR + 1}.");
+        else
+        {
+          Console.WriteLine($"{yString}/{dString} does not exist.");
+          CreateFiles(yString, dString);
+        }
         return;
       }
 
