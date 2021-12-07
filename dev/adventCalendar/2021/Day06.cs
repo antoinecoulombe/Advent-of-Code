@@ -7,34 +7,33 @@ namespace dev.adventCalendar._2021
 {
   class Day06 : Day
   {
-    private (byte, long)[] GetFish()
+    private long[] GetFish()
     {
-      var fish = GetFileText().Split(',').Select(x => byte.Parse(x))
-           .GroupBy(x => x).Select(x => (daysLeft: x.Key, count: (long)x.Count())).ToList();
+      var numbers = GetFileText().Split(',').Select(x => byte.Parse(x))
+           .GroupBy(x => x).Select(x => x.Count()).ToList();
 
-      for (byte i = 0; i <= 8; ++i)
-        if (!fish.Exists(x => x.daysLeft == i))
-          fish.Add((i, 0));
+      long[] fish = new long[9];
+      for (int i = 0; i < numbers.Count(); ++i)
+        fish[i + 1] = numbers[i];
 
-      return fish.OrderBy(x => x.daysLeft).ToArray();
+      return fish;
     }
 
     private long Execute(int days)
     {
-      (byte daysLeft, long count)[] fish = GetFish();
+      long[] fish = GetFish();
 
       for (int i = 1; i <= days; ++i)
       {
-        var zeros = (((byte, long)[])(fish.Clone()))[0].Item2;
+        var zeros = fish[0];
         for (byte j = 1; j < fish.Count(); ++j)
-          fish[j - 1] = ((byte)(j - 1), fish[j].count);
+          fish[j - 1] = fish[j];
 
-        fish[6] = (6, fish[6].count + zeros);
-        fish[8] = (8, zeros);
-        fish[0] = (0, fish[0].count);
+        fish[6] = fish[6] + zeros;
+        fish[8] = zeros;
       }
 
-      return fish.Sum(x => x.count);
+      return fish.Sum(x => x);
     }
 
     public override string ExecuteFirst()
