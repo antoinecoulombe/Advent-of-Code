@@ -62,12 +62,12 @@ namespace aoc.puzzles
         Console.WriteLine("File not found locally. Proceeding to download from AoC's website.");
         using (var client = new WebClient())
         {
-          // string session = "53616c7465645f5fbd365523b8606559343c4883fdee8f3c75cd846ae012b5be9cd1e9437f6d10c15ec8cb265d80a1ea";
-          // client.Headers.Add(HttpRequestHeader.Cookie, $"session={session}");
+          string session = "53616c7465645f5fbd365523b8606559343c4883fdee8f3c75cd846ae012b5be9cd1e9437f6d10c15ec8cb265d80a1ea";
+          client.Headers.Add(HttpRequestHeader.Cookie, $"session={session}");
 
-          // string url = GetUrlFromPath(path);
-          // client.DownloadFile(url, path);
-          // Console.WriteLine($"File downloaded from url '{url}'.");
+          string url = GetUrlFromPath(path);
+          client.DownloadFile(url, path);
+          Console.WriteLine($"File downloaded from url '{url}'.");
         }
       }
 
