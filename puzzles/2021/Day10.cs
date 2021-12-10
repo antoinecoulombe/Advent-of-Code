@@ -22,7 +22,6 @@ namespace aoc.puzzles._2021
     private long GetIncompleteScore(string line)
     {
       Stack<char> opened = new Stack<char>();
-
       foreach (char c in line)
         if (openers.Contains(c)) opened.Push(c);
         else opened.Pop();
