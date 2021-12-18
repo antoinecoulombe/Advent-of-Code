@@ -8,7 +8,7 @@ namespace aoc
 		static void Main(string[] args)
 		{
 			Console.Clear();
-			Puzzles.Execute(16, 2021);
+			Puzzles.Execute(14, 2021);
 		}
 	}
 }
