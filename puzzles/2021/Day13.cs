@@ -1,86 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 
 namespace aoc.puzzles._2021
 {
-  class Day13 : Day
-  {
-    (int x, int y) size = (0, 0);
+	class Day13 : Day
+	{
+		private (Point[] points, (char axis, int at)[] folds) GetPointsAndFolds()
+		{
+			var lines = GetFileLines();
+			var points = lines.TakeWhile(x => x != "").Select(x =>
+			{
+				var pos = x.Split(',').Select(x => int.Parse(x)).ToList();
+				return new Point(pos[0], pos[1]);
+			}).ToArray();
+			var folds = lines.Skip(points.Length + 1).Select(x =>
+			{
+				var split = x.Split(' ')[2].Split('=');
+				return (split[0][0], int.Parse(split[1]));
+			}).ToArray();
+			return (points, folds);
+		}
 
-    private (Point[] points, (char axis, int at)[] folds) GetPointsAndFolds()
-    {
-      var lines = GetFileLines();
-      var points = lines.TakeWhile(x => x != "").Select(x =>
-      {
-        var pos = x.Split(',').Select(x => int.Parse(x)).ToList();
-        return new Point(pos[0], pos[1]);
-      }).ToArray();
-      var folds = lines.Skip(points.Length + 1).Select(x =>
-      {
-        var split = x.Split(' ')[2].Split('=');
-        return (split[0][0], int.Parse(split[1]));
-      }).ToArray();
-      return (points, folds);
-    }
+		private static int MovePoint(int p, int at)
+			=> p >= at ? 2 * at - p : p;
 
-    private (int x, int y) GetMax(Point[] points)
-    {
-      int xMax = 0;
-      int yMax = 0;
-      foreach (var p in points)
-      {
-        if (p.X > xMax)
-          xMax = p.X;
-        if (p.Y > yMax)
-          yMax = p.Y;
-      }
-      return (xMax, yMax);
-    }
+		private List<Point> FoldOne((Point[] points, (char axis, int at)[] folds) input)
+		{
+			return input.folds.Take(1).SelectMany(f => input.points.Select(
+				p => new Point(f.axis == 'x' ? MovePoint(p.X, f.at) : p.X, f.axis == 'y' ? MovePoint(p.Y, f.at) : p.Y)))
+			.Distinct().ToList();
+		}
+		private List<Point> FoldAll((Point[] points, (char axis, int at)[] folds) input)
+		{
+			return input.folds.Aggregate(input.points.ToList(), (d, f) => d.Select(
+				p => new Point(f.axis == 'x' ? MovePoint(p.X, f.at) : p.X, f.axis == 'y' ? MovePoint(p.Y, f.at) : p.Y))
+			.ToList()).Distinct().OrderBy(p => p.X).ThenBy(p => p.Y).ToList();
+		}
 
-    private void WritePoints(ref bool[,] paper, Point[] points)
-    {
-      foreach (var p in points)
-        paper[p.X, p.Y] = true;
-    }
+		public override string ExecuteFirst()
+			=> FoldOne(GetPointsAndFolds()).Count().ToString();
 
-    private void Fold(ref bool[,] paper, (char axis, int at)[] folds, bool allFolds = false)
-    {
-      for (int i = 0; i < (allFolds ? folds.Length : 1); ++i)
-      {
-        // TODO: Handle folds 
-        if (folds[i].axis == 'x') // go up from 656 (x+1), go down from 655
-          return; // y stays same
-        else if (folds[i].axis == 'y')
-          return; // x stays same
-      }
-    }
+		public override string ExecuteSecond()
+		{
+			var input = GetPointsAndFolds();
+			var points = FoldAll(input);
 
-    private int CountPoints(ref bool[,] paper)
-    {
-      int count = 0;
-      for (int i = 0; i < size.x; ++i)
-        for (int j = 0; j < size.y; ++j)
-          if (paper[i, j])
-            ++count;
-      return count;
-    }
-
-    public override string ExecuteFirst()
-    {
-      var data = GetPointsAndFolds();
-      size = GetMax(data.points);
-      bool[,] paper = new bool[size.x, size.y];
-      WritePoints(ref paper, data.points);
-      Fold(ref paper, data.folds);
-      return CountPoints(ref paper).ToString();
-    }
-
-    public override string ExecuteSecond()
-    {
-      return "";
-    }
-  }
+			string result = "";
+			for (int i = 0; i < points.Max(p => p.Y) + 1; ++i)
+			{
+				for (int j = 0; j < points.Max(p => p.X) + 1; ++j)
+					result += points.Contains(new Point(j, i)) ? "@" : " ";
+				result += "\n";
+			}
+			return result;
+		}
+	}
 }
